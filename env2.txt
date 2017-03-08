@@ -1,0 +1,164 @@
+System-Provided:
+{
+ "VCAP_SERVICES": {
+  "predix-acs": [
+   {
+    "credentials": {
+     "uri": "https://predix-acs.run.aws-usw02-pr.ice.predix.io",
+     "zone": {
+      "http-header-name": "Predix-Zone-Id",
+      "http-header-value": "c0dd347e-3eae-42a6-bd53-50597d54f66b",
+      "oauth-scope": "predix-acs.zones.c0dd347e-3eae-42a6-bd53-50597d54f66b.user"
+     }
+    },
+    "label": "predix-acs",
+    "name": "gslab-analytics-acs",
+    "plan": "Free",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [],
+    "volume_mounts": []
+   }
+  ],
+  "predix-analytics-catalog": [
+   {
+    "credentials": {
+     "catalog_uri": "https://predix-analytics-catalog-release.run.aws-usw02-pr.ice.predix.io",
+     "zone-http-header-name": "Predix-Zone-Id",
+     "zone-http-header-value": "bdcb824b-3c93-467a-8a8e-ae925d9bd11f",
+     "zone-oauth-scope": "analytics.zones.bdcb824b-3c93-467a-8a8e-ae925d9bd11f.user"
+    },
+    "label": "predix-analytics-catalog",
+    "name": "gslab-analytics-catalog",
+    "plan": "Free",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [],
+    "volume_mounts": []
+   }
+  ],
+  "predix-analytics-runtime": [
+   {
+    "credentials": {
+     "config_uri": "https://predix-analytics-config-release.run.aws-usw02-pr.ice.predix.io",
+     "execution_uri": "https://predix-analytics-execution-release.run.aws-usw02-pr.ice.predix.io",
+     "monitoring_uri": "https://predix-analytics-monitoring-release.run.aws-usw02-pr.ice.predix.io",
+     "scheduler_uri": "https://predix-scheduler-service-release.run.aws-usw02-pr.ice.predix.io",
+     "zone-http-header-name": "Predix-Zone-Id",
+     "zone-http-header-value": "95221389-f27f-4b98-be21-ea1e93129dbf",
+     "zone-oauth-scope": "analytics.zones.95221389-f27f-4b98-be21-ea1e93129dbf.user"
+    },
+    "label": "predix-analytics-runtime",
+    "name": "gslab-analytics-runtime",
+    "plan": "Free",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [],
+    "volume_mounts": []
+   }
+  ],
+  "predix-analytics-ui": [
+   {
+    "credentials": {
+     "ui_uri": "https://gslab.predix-analytics-ui.run.aws-usw02-pr.ice.predix.io"
+    },
+    "label": "predix-analytics-ui",
+    "name": "gslab-analytics-ui",
+    "plan": "Free",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [],
+    "volume_mounts": []
+   }
+  ],
+  "predix-timeseries": [
+   {
+    "credentials": {
+     "ingest": {
+      "uri": "wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages",
+      "zone-http-header-name": "Predix-Zone-Id",
+      "zone-http-header-value": "2613969e-d4b5-4caa-8b5b-0d1ffd2048d8",
+      "zone-token-scopes": [
+       "timeseries.zones.2613969e-d4b5-4caa-8b5b-0d1ffd2048d8.user",
+       "timeseries.zones.2613969e-d4b5-4caa-8b5b-0d1ffd2048d8.ingest"
+      ]
+     },
+     "query": {
+      "uri": "https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints",
+      "zone-http-header-name": "Predix-Zone-Id",
+      "zone-http-header-value": "2613969e-d4b5-4caa-8b5b-0d1ffd2048d8",
+      "zone-token-scopes": [
+       "timeseries.zones.2613969e-d4b5-4caa-8b5b-0d1ffd2048d8.user",
+       "timeseries.zones.2613969e-d4b5-4caa-8b5b-0d1ffd2048d8.query"
+      ]
+     }
+    },
+    "label": "predix-timeseries",
+    "name": "gslab-solar-timeseries",
+    "plan": "Free",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "timeseries",
+     "time-series",
+     "time series"
+    ],
+    "volume_mounts": []
+   }
+  ],
+  "predix-uaa": [
+   {
+    "credentials": {
+     "dashboardUrl": "https://uaa-dashboard.run.aws-usw02-pr.ice.predix.io/#/login/6a4c796f-1608-4ad7-9a99-45754c211bcd",
+     "issuerId": "https://gslab.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token",
+     "subdomain": "gslab",
+     "uri": "https://gslab.predix-uaa.run.aws-usw02-pr.ice.predix.io",
+     "zone": {
+      "http-header-name": "X-Identity-Zone-Id",
+      "http-header-value": "6a4c796f-1608-4ad7-9a99-45754c211bcd"
+     }
+    },
+    "label": "predix-uaa",
+    "name": "gslab-analytics-uaa",
+    "plan": "Free",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [],
+    "volume_mounts": []
+   }
+  ]
+ }
+}
+
+{
+ "VCAP_APPLICATION": {
+  "application_id": "1763ee1f-ff3a-41a4-b49f-28e9eb668622",
+  "application_name": "rohit-rajbanshi-helloworld",
+  "application_uris": [
+   "rohit-rajbanshi-helloworld.run.aws-usw02-pr.ice.predix.io"
+  ],
+  "application_version": "94c5d717-347d-434e-b7da-775c421fc499",
+  "limits": {
+   "disk": 1024,
+   "fds": 16384,
+   "mem": 256
+  },
+  "name": "rohit-rajbanshi-helloworld",
+  "space_id": "38605137-5343-4ef6-8c54-9a440b1abf1e",
+  "space_name": "dev",
+  "uris": [
+   "rohit-rajbanshi-helloworld.run.aws-usw02-pr.ice.predix.io"
+  ],
+  "users": null,
+  "version": "94c5d717-347d-434e-b7da-775c421fc499"
+ }
+}
+
+No user-defined env variables have been set
+
+No running env variables have been set
+
+No staging env variables have been set
+
+
+C:\Users\GSC-30127>
