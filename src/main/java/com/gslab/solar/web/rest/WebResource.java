@@ -5,6 +5,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
+import com.ge.predix.entity.timeseries.datapoints.ingestionrequest.DatapointsIngestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ge.predix.entity.timeseries.datapoints.queryresponse.DatapointsResponse;
-import com.gslab.solar.domain.Interval;
-import com.gslab.solar.domain.SolarPanel;
+import com.gslab.iot.solar.domain.dto.SolarPanel;
 import com.gslab.solar.service.DataIngestionService;
-import com.gslab.solar.service.DataQueryService;
 
 /**
  * @author Rohit Rajbanshi
@@ -31,8 +29,6 @@ public class WebResource {
 	@Autowired
 	private DataIngestionService dataIngestionService;
 
-	@Autowired
-	private DataQueryService dataQueryService;
 
 	@RequestMapping("/")
 	@ResponseBody
@@ -88,15 +84,8 @@ public class WebResource {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/raw-panel")
 	public ResponseEntity<Boolean> postRawPanelData(@RequestParam(value = "str") String str) {
-		dataIngestionService.ingest(str);
+			dataIngestionService.ingest(str);
 		return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
-	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/get-timeseries-data")
-	@ResponseBody
-	public String getTimeseriesData(@RequestBody Interval interval, @RequestParam(value = "panelId") String panelId) {
-		DatapointsResponse response = dataQueryService.queryData(interval, panelId);
-		return response.getTags().get(0).getResults().get(0).getValues().toString();
 	}
 
 	protected Response handleResult(Object entity) {

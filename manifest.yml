@@ -1,19 +1,23 @@
 applications:
-  - name: gslab-solar-timeseries-ingestor
+  - name: gslab-data-ingestion-service
     buildpack: java_buildpack
     path: target/data-service-1.0.0.jar
     memory: 500M
     timeout : 180
     services:
-        - gslab-analytics-uaa
-        - gslab-solar-timeseries
-
+         #- gslab-solar-uaa
+         #- gslab-solar-timeseries
+        - gs-parking-dev-01-time-series
+        - gs-parking-dev-01-uaa
 env:
     # NOTE: Some values in curly braces are updated by scripts
     SPRING_PROFILES_ACTIVE : cloud
-    predix_uaa_name: gslab-analytics-uaa
-    predix_timeseries_name : gslab-solar-timeseries
-    predix_oauth_clientId : client:secret
+#    predix_uaa_name: gslab-solar-uaa
+    predix_uaa_name: gs-parking-dev-01-uaa
+#    predix_timeseries_name : gslab-solar-timeseries
+    predix_timeseries_name : gs-parking-dev-01-time-series
+#    predix_oauth_clientId : client:secret
+    predix_oauth_clientId : app_client_id:secret
     #default timeseries
     predix_timeseries_wspool_maxIdle : 5
     predix_timeseries_wspool_maxActive : 5

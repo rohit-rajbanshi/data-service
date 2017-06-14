@@ -1,7 +1,12 @@
 package com.gslab.solar.service;
 
+import com.gslab.solar.domain.Panel;
+import com.gslab.solar.domain.SensorType;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class StringDataParser {
 
@@ -15,7 +20,7 @@ public class StringDataParser {
 		panelData = new HashMap<String, Map>();
 	}
 
-	public void parseData() {
+	public void parseData(Map<String,Panel> panels) {
 
 		String temp = str;
 		totalRec = Integer.parseInt(temp.substring(0, 2));
@@ -24,16 +29,39 @@ public class StringDataParser {
 		while (--i >= 0) {
 
 			Map<String, Double> values = new HashMap<String, Double>();
-
-			panelTag = "gslab-solarpanel-" + temp.substring(0, 3);
+			String panelId =  temp.substring(0, 3);
+			panelTag = panels.get(panelId).getAssetId();
 			temp = temp.substring(3);
 
-			values.put("voltageIn", Double.parseDouble(temp.substring(0, 5)));
-			values.put("current", Double.parseDouble(temp.substring(5, 10)));
-			values.put("voltageOut", Double.parseDouble(temp.substring(10, 15)));
-			values.put("temperature", Double.parseDouble(temp.substring(15, 20)));
-
-			temp = temp.substring(20);
+			Set<SensorType> sensors = panels.get(panelId).getAssetTag().keySet();
+			if(sensors.contains(SensorType.VOLTAGE_IN)){
+				values.put(
+								panels.get(panelId).getAssetTag().get(SensorType.VOLTAGE_IN).getSourceTagId(),
+								Double.parseDouble(temp.substring(0, 5))
+				);
+				temp = temp.substring(5);
+			}
+			if(sensors.contains(SensorType.CURRENT)){
+				values.put(
+								panels.get(panelId).getAssetTag().get(SensorType.CURRENT).getSourceTagId(),
+								Double.parseDouble(temp.substring(0,5))
+				);
+				temp = temp.substring(5);
+			}
+			if(sensors.contains(SensorType.VOLTAGE_OUT)){
+				values.put(
+								panels.get(panelId).getAssetTag().get(SensorType.VOLTAGE_OUT).getSourceTagId(),
+								Double.parseDouble(temp.substring(0,5))
+				);
+				temp = temp.substring(5);
+			}
+			if(sensors.contains(SensorType.TEMPERATURE)){
+				values.put(
+								panels.get(panelId).getAssetTag().get(SensorType.TEMPERATURE).getSourceTagId(),
+								Double.parseDouble(temp.substring(0,5))
+				);
+				temp = temp.substring(5);
+			}
 			panelData.put(panelTag, values);
 		}
 	}
